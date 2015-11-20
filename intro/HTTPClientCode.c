@@ -1,9 +1,9 @@
 #include "unp.h"
 
-int main(int argc, char **arg)
+int main(int argc, char **argv)
 {
 	int					sockfd, n;
-	char				secvline[MAXLINE + 1];
+	char				recvline[MAXLINE + 1];
 	struct sockaddr_in	servaddr;
 	char				buff[MAXLINE];
 	
@@ -35,7 +35,7 @@ int main(int argc, char **arg)
 							// Also note that the resource name is passed in from the command line
 	Write(sockfd, buff, strlen(buff)); //write contents of send buffer to the socket
 	
-	while((n = read(sockfd, revcline, MAXLINE)) > 0) //read the data returned by the server into the receive buffer
+	while((n = read(sockfd, recvline, MAXLINE)) > 0) //read the data returned by the server into the receive buffer
 	{
 		recvline[n] = 0; //null terminate the receive buffer
 		if(fputs(recvline, stdout) == EOF) //print the contents of the receive buffer to the screen
