@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 	
 	if(argc != 2)
 	{
-		err_qiut("usage: a.out <Port>");
+		err_quit("usage: a.out <Port>");
 	}
 	
 	listenfd = Socket(AF_INET, SOCK_STREAM, 0);
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
 			
 			if(!strcmp(path, "/index"))
 			{
-				snprintf(wbuff, sizeof(wbuff, "%s", HOME_PAGE); //using a hash-define string
+				snprintf(wbuff, sizeof(wbuff), "%s", HOME_PAGE); //using a hash-define string
 				Write(connfd, wbuff, strlen(wbuff));
 			}
 			
