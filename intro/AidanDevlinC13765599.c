@@ -5,7 +5,7 @@ int main(int argc, char **argv)
 	int sockfd, n, count=0;
 	char sendbuff[MAXLINE + 1], recbuff[MAXLINE + 1], vote;
 	struct sockaddr_in servaddr;
-	int[5] names;
+	int names[5];
 	int i = 0;
 	
 	for(i=0; i<5; i++)
