@@ -11,6 +11,7 @@ int main(int argc, char **argv)
 	char sendbuff[MAXLINE + 1], recbuff[MAXLINE + 1], vote;
 	struct sockaddr_in servaddr;
 	int names[5];
+	int vote =0;
 	int i = 0;
 	
 	for(i=0; i<5; i++)
@@ -33,7 +34,10 @@ int main(int argc, char **argv)
 		
 		while((n = read(connfd, rbuff, MAXLINE))>0)
 		{
-			sscanf(rbuff, "%s, %s, %s", cmd, path, vers);
+			rbuff[n] = 0;
+			sscanf(rbuff, "%d", vote);
+			
+			names[vote]++;
 		
 			snprintf("Thank you for voting.\nThe current votes are:\n
 				Jordie: %d\nKieron: %d\nFerne: %d\nGeorge: %d\n Vicky: %d",
