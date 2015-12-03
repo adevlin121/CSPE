@@ -1,10 +1,13 @@
+//Aidan Devlin
+//C13765599
+
 #include "unp.h"
 #include <stdio.h>
 #include <string.h>
 
 int main(int argc, char **argv)
 {
-	int sockfd, n, count=0;
+	int listenfd, n, count=0;
 	char sendbuff[MAXLINE + 1], recbuff[MAXLINE + 1], vote;
 	struct sockaddr_in servaddr;
 	int names[5];
@@ -28,10 +31,14 @@ int main(int argc, char **argv)
 	{
 		connfd = Accept(listenfd, (SA *) NULL, NULL);
 		
-		snprintf("Thank you for voting.\n
-					The current votes are:\n
-					Jordie: %d\nKieron: %d\nFerne: %d\nGeorge: %d\n Vicky: %d",
-					names[0], names[1], names[2], names[3], names[4]);
+		while((n = read(connfd, rbuff, MAXLINE))>0)
+		{
+			sscanf(rbuff, "%s, %s, %s", cmd, path, vers);
+		
+			snprintf("Thank you for voting.\nThe current votes are:\n
+				Jordie: %d\nKieron: %d\nFerne: %d\nGeorge: %d\n Vicky: %d",
+				names[0], names[1], names[2], names[3], names[4]);
+		}
 					
 		Close(connfd);
 	}
